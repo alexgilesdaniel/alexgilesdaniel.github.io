@@ -4,7 +4,7 @@ author: Alex Daniel
 tags: [portfolio sample, software, procedures, revision, networking]
 ---
 
-Once upon a time, the documentation for LabVIEW’s shared variable API was a mess. User applications weren't behaving as intended, on account of misunderstanding of shared variable technology, and the documentation wasn't helping. Below are excerpts from the content I revised, and further on, you can read some [notes on the writing](#notes-on-the-writing) that explain my changes.
+Once upon a time, the documentation for LabVIEW’s shared variable API was a mess. Shared variable technology was misunderstood and misused, and the documentation wasn't helping. Below are excerpts from the content I revised. Further on, you can read some [notes on the writing](#notes-on-the-writing) that explain my changes.
 
 --- 
 

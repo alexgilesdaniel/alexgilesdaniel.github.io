@@ -8,6 +8,8 @@ When there's more than one way to complete the same task, users need to know the
 
 To see a similar topic that's still live, check out [Choosing a Method of Reading and Writing Shared Variables](https://www.ni.com/docs/en-US/bundle/labview/page/choosing-a-method-of-reading-and-writing-shared-variables.html).
 
+___
+
 ![Transferring Data Between Operating Systems](/assets/images/transferring_between_oses.png)
 
 ---

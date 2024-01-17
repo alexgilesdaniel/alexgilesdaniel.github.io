@@ -11,11 +11,15 @@ One of my first tasks was to write installation instructions for the Linux versi
 
 Excerpts of that work, which appeared in a PDF quick start guide along with the product, appear below. Aside from the clarity of my writing, these samples demonstrate my experience with both Linux and working on the command line.
 
-[View the full PDF on NI's website](https://download.ni.com/support/manuals/375174c.pdf)
+[View the full PDF](https://download.ni.com/support/manuals/375174c.pdf)
+
+---
 
 ![NI RT HV Quick Start Excerpt](/assets/images/linux_installation_1.png)
 
 ![NI RT HV Quick Start Excerpt](/assets/images/linux_installation_2.png)
+
+![NI RT HV Quick Start Excerpt](/assets/images/linux_installation_3.png)
 
 
 ---

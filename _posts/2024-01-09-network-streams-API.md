@@ -8,6 +8,8 @@ As I wrote in the docs, "a network stream is a lossless, unidirectional, one-to-
 
 ![A Network Streams Endpoint](/assets/images/NS_endpoint.gif)
 
+---
+
 ## Links to Original Docs, with TOC Hierarchy Preserved
 
 - [Streaming Data and Sending Commands between Applications](https://www.ni.com/docs/en-US/bundle/labview/page/streaming-data-and-sending-commands-between-applications.html)

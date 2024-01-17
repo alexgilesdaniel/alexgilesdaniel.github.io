@@ -6,7 +6,9 @@ tags: [portfolio sample, software, programming example]
 
 One of my proudest accomplishments at National Instruments was developing a multimodal approach to documentation. Prior to my joining on with NI, the LabVIEW documentation contained screenshots of programming examples, but they were few, and the team didn’t have a standardized format for explaining them in detail. In my documentation, I used numbered callouts to describe the flow of data through LabVIEW applications, as seen in the adapted excerpt below.
 
-Read the full topic [here](https://www.ni.com/docs/en-US/bundle/labview/page/streaming-data-between-applications.html).
+Read the full topic [here](https://www.ni.com/docs/en-US/bundle/labview/page/streaming-data-between-applications.html). The featured application is one that I developed.
+
+---
 
 ## Streaming Data between Applications
 
