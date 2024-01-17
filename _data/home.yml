@@ -1,0 +1,96 @@
+navbar_entries:
+
+  - title: home
+    url: /
+
+  - title: contact
+    url: contact
+
+  - title: linkedin
+    url: https://www.linkedin.com/in/alex-daniel-1117d/
+
+project_entries:
+
+  - title: Transferring Data Over a Network
+    url: transferring-data-over-a-network
+    desc: A landing topic for navigating the various network transfer protocols in LabVIEW
+
+  - title: Publishing Latest Values with Shared Variables
+    url: publishing-latest-values-with-shared-variables
+    desc: Once upon a time, the documentation for LabVIEW's shared variable API was a mess. This is the story of how I cleaned it up, at least for a while.
+
+  - title: Streaming Data between Applications
+    url: streaming-data-between-applications
+    desc: A multimodal approach to LabVIEW documentation, featuring numbered callouts that describe dataflow in an application
+
+  - title: Network Streams API
+    url: network-streams-api
+    desc: The doc set for LabVIEW's Network Streams API
+
+  - title: Real-Time Hypervisor Quick Start Guide
+    url: real-time-hypervisor-quick-start-guide
+    desc: A quick start PDF for a bare metal embedded system, including Linux installation instructions
+
+  - title: Transferring Data between Operating Systems
+    url: transferring-data-between-operating-systems
+    desc: When there's more than one way to complete the same task, users need to know the pros and cons of each method.
+
+
+old_project_entries:
+  - title: Soopr
+    url: https://www.soopr.co
+    desc: Delight your readers - add beautiful share and like buttons easily to your websites 
+    highlight: NEW
+
+  - title: Cookie
+    url: https://github.com/abhinavs/cookie
+    desc: An open source landing website with supporting pages and integrated blog
+
+  - title: Moonwalk
+    url: https://github.com/abhinavs/moonwalk
+    desc: A fast and minimalist Jekyll blog theme with clean dark mode
+
+  - title: Humangous
+    url: https://www.humangous.co
+    desc: The better people know you, the better they collaborate
+
+footer_entries:
+  - title: github
+    url: https://github.com/alexgilesdaniel
+
+  - title: feed
+    url: feed.xml
+
+misc_entries:
+  - title: this is an example vertical list
+    url: false
+
+  - title: you can show or hide using a boolean flag in _config.yml
+    url: false
+
+  - title: and you can add data in _data/home.yml
+    url: false
+
+  - title: Blog posts
+    post_list: true
+    url: false
+
+  - title: moonwalk on the Internet
+    url: false
+    entries:
+      - title: on Github
+        url: https://github.com/abhinavs/moonwalk
+
+      - title: originally built for abhinav's homepage
+        url: https://www.abhinav.co
+
+      - title: this list is scalable and can be nested
+        url: false
+        entries:
+          - title: this is nested inside a nested list
+            url: false
+
+          - title: it is easy to use, see _data/home.yml to see how to configure it.
+            url: false
+
+

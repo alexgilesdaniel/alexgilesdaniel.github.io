@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" class="html" data-theme="dark"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    
+      Publishing Latest Values With Shared Variables
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.2.2" />
+<meta property="og:title" content="Publishing Latest Values With Shared Variables" />
+<meta name="author" content="Alex Daniel" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Once upon a time, the documentation for LabVIEW’s shared variable API was a mess. User applications weren’t behaving as intended, on account of misunderstanding of shared variable technology, and the documentation wasn’t helping. Below are excerpts from the content I revised, and further on, you can read some notes on the writing that explain my changes." />
+<meta property="og:description" content="Once upon a time, the documentation for LabVIEW’s shared variable API was a mess. User applications weren’t behaving as intended, on account of misunderstanding of shared variable technology, and the documentation wasn’t helping. Below are excerpts from the content I revised, and further on, you can read some notes on the writing that explain my changes." />
+<link rel="canonical" href="http://localhost:4000/publishing-latest-values-with-shared-variables" />
+<meta property="og:url" content="http://localhost:4000/publishing-latest-values-with-shared-variables" />
+<meta property="og:site_name" content="a l e x g i l e s d a n i e l" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2024-01-16T00:00:00-06:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Publishing Latest Values With Shared Variables" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Alex Daniel"},"dateModified":"2024-01-16T00:00:00-06:00","datePublished":"2024-01-16T00:00:00-06:00","description":"Once upon a time, the documentation for LabVIEW’s shared variable API was a mess. User applications weren’t behaving as intended, on account of misunderstanding of shared variable technology, and the documentation wasn’t helping. Below are excerpts from the content I revised, and further on, you can read some notes on the writing that explain my changes.","headline":"Publishing Latest Values With Shared Variables","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/publishing-latest-values-with-shared-variables"},"url":"http://localhost:4000/publishing-latest-values-with-shared-variables"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="a l e x g i l e s d a n i e l" />
+
+  <!-- Favicon -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/favicon/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/favicon/favicon-16x16.png">
+  <link rel="manifest" href="/assets/images/favicon/site.webmanifest">
+  <link rel="mask-icon" href="/assets/images/favicon/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="/assets/images/favicon/favicon.ico">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-config" content="/assets/images/favicon/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Favicon -->
+
+  <link rel="stylesheet" href="/assets/css/main.css" />
+  
+    <script type="text/javascript">
+  window.addEventListener('load', themeChange);
+  const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+  if (currentTheme)
+    document.documentElement.setAttribute('data-theme', currentTheme);
+
+  function themeChange() {
+    let button = document.querySelector('.theme-toggle');
+
+    button.addEventListener('click', function (e) {
+      let currentTheme = document.documentElement.getAttribute('data-theme');
+      if (currentTheme === 'dark') {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+      } else {
+        transition();
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+
+    let transition = () => {
+      document.documentElement.classList.add('transition');
+      window.setTimeout(() => {
+        document.documentElement.classList.remove('transition');
+      }, 1000);
+    }
+  }
+</script>
+
+
+  
+</head>
+<body>
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="/">home..</a>
+<h1 class="post-title">Publishing Latest Values With Shared Variables</h1>
+<p class="post-date text-bold">
+  
+    <span class="text-upcase">Alex Daniel</span> / 
+  
+  
+    <span class="text-upcase">January 2024</span>
+  
+
+
+</p>
+
+
+
+
+  <div class="">
+    
+    <span class="tag">portfolio sample</span>
+    
+    <span class="tag">software</span>
+    
+    <span class="tag">procedures</span>
+    
+    <span class="tag">revision</span>
+    
+    <span class="tag">networking</span>
+    
+  </div>
+
+
+<p>Once upon a time, the documentation for LabVIEW’s shared variable API was a mess. User applications weren’t behaving as intended, on account of misunderstanding of shared variable technology, and the documentation wasn’t helping. Below are excerpts from the content I revised, and further on, you can read some <a href="#notes-on-the-writing">notes on the writing</a> that explain my changes.</p>
+
+<hr />
+
+<h2 id="publishing-latest-values-with-shared-variables-">Publishing Latest Values with Shared Variables <sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup></h2>
+
+<p>A shared variable is a memory space that you can read data from and write data to. You can read and write shared variables on a single computer with single-process shared variables or on multiple computers with network-published shared variables, which publish data over a network using the NI Publish-Subscribe Protocol (NI-PSP). Use shared variables to publish only the latest values in a data set to one or more computers.</p>
+
+<p>In general, you must complete the following tasks to publish latest values with a shared variable:</p>
+
+<ol>
+  <li><a href="https://www.ni.com/docs/en-US/bundle/labview/page/creating-shared-variables.html">Create a shared variable.</a></li>
+  <li><a href="https://www.ni.com/docs/en-US/bundle/labview/page/configuring-shared-variables.html">Configure the shared variable.</a></li>
+  <li><a href="https://www.ni.com/docs/en-US/bundle/labview/page/choosing-a-method-of-reading-and-writing-shared-variables.html">Program your applications to read and write the shared variable.</a></li>
+  <li><a href="https://www.ni.com/docs/en-US/bundle/labview/page/making-shared-variables-available-on-a-network.html">Make the shared variable available on the network.</a></li>
+</ol>
+
+<h2 id="understanding-shared-variable-technology">Understanding Shared Variable Technology<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup></h2>
+
+<p>Network-published shared variables publish data over a network through a software component called the Shared Variable Engine (SVE). The SVE is installed as a service on your computer when you install LabVIEW, and it manages shared variable updates using a proprietary technology called the NI Publish-Subscribe Protocol (NI-PSP). The term publish-subscribe describes a model of communication where writers, or publishers, do not send data to specific readers, or subscribers. Rather, publishers send updates to a server, in this case the SVE, and subscribers receive those updates from the server.</p>
+
+<p>The following figure uses Shared Variable nodes to demonstrate how the SVE manages shared variable updates with NI-PSP.</p>
+
+<p><img src="/assets/images/sveengine.gif" alt="Shared Variable Engine" /></p>
+
+<p>The following events occur in the previous figure.</p>
+
+<ol>
+  <li>In Application A, the Random Number (0-1) function writes a random number to the Shared Variable node that corresponds to Variable 1.</li>
+  <li>The Shared Variable node in Application A sends a request to the SVE to update the value of Variable 1.</li>
+  <li>The SVE approves and sends the new value to the Shared Variable nodes that correspond to Variable 1 in Applications B and C.</li>
+</ol>
+
+<p>In the previous figure, although Computer 1 hosts a writer of Variable 1 in Application A and a reader of Variable 1 in Application B, Application A cannot write a new value directly to Application B. Instead, Application A must send a request to the SVE on Computer 2 to update every application that subscribes to Variable 1. Therefore, the latency involved in these updates makes shared variables ideal for publishing latest values only. To stream data continuously, use network streams.</p>
+
+<hr />
+
+<h3 id="notes-on-the-writing">Notes on the Writing</h3>
+
+<p>I made the following key changes to improve this documentation.</p>
+
+<ul>
+  <li><strong>Revised topic titles to reflect API functionality.</strong> Previously, the topic on shared variable data transfer was called “Sharing Live Data Using Shared Variables.” This title implied that shared variables were appropriate for sharing any and all data, but in fact, they were only suited for publishing the latest values in a data set. To appropriately set user expectations, I retitled the topic “Publishing Latest Values with Shared Variables” and made sure to include the last sentence in the first paragraph.</li>
+  <li><strong>Reorganized the table of contents.</strong> Initially, shared variable topics had been thrown under a container called “Networking in LabVIEW,” at the same level as topics for other networking protocols. My reorganization has since been reorganized, but I created a parent topic for all networking protocols called <a href="transferring-data-over-a-network">Transferring Data over a Network</a>. Beneath that, <a href="https://www.ni.com/docs/en-US/bundle/labview/page/publishing-latest-values-with-shared-variables.html">Publishing Shared Latest Values with Shared Variables</a> became a portal for all conceptual and procedural information anyone could need to be successful with shared variables.</li>
+  <li><strong>Illustrated conceptual and procedural information graphically.</strong> With a technology so widely misused, words alone weren’t going to cut it. I moved an existing screenshot of an example application to the top of <a href="https://www.ni.com/docs/en-US/bundle/labview/page/reading-and-writing-shared-variables-programmatically.html">Reading and Writing Shared Variables Programmatically</a> and supplemented it with callouts that described its dataflow. I also created the conceptual graphic in the previous section to describe the behavior and limitations of the shared variable engine.</li>
+</ul>
+
+<hr data-content="footnotes" />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>Read the full topic <a href="https://www.ni.com/docs/en-US/bundle/labview/page/publishing-latest-values-with-shared-variables.html">here</a>. It’s changed since I wrote it. I intended this topic to be a portal to high-level shared variable tasks, which is why I linked each of the four steps in this topic to essential procedures, but those links have since been removed. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>Read the full topic <a href="https://www.ni.com/docs/en-US/bundle/labview/page/understanding-shared-variable-technology.html">here</a>. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+        
+          <button title="Toggle Theme" class="theme-toggle">
+  <svg viewBox="0 0 32 32" width="24" height="24" fill="currentcolor">
+    <circle cx="16" cy="16" r="14" fill="none" stroke="currentcolor" stroke-width="4"></circle>
+    <path d="
+             M 16 0
+             A 16 16 0 0 0 16 32
+             z">
+    </path>
+  </svg>
+</button>
+
+        
+        <div class="credits">&copy;&nbsp;2024&nbsp;Alex Daniel
+          &nbsp;
+          •
+          &nbsp;Theme&nbsp; <a href="https://github.com/abhinavs/moonwalk" target="_blank" rel="noreferrer">Moonwalk</a>
+        </div>
+      </div>
+    </main><script async defer src="https://sdk.soopr.co/soopr.js"></script></body>
+</html>
